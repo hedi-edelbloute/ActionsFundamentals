@@ -1,0 +1,22 @@
+name: CI Build for Docker Action
+on:
+  push:
+    branches: [main]
+    paths: [hello-world/**]
+  workflow_dispatch:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run action
+        id: hello-world
+        uses: ./hello-world
+        with:
+          who-to-greet: "Hedi"
+
+      - name: Output time set in the container
+        run: echo "The time was ${{ steps.hello-world.outputs.time }}"
