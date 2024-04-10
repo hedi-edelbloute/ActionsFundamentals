@@ -4,6 +4,13 @@ on:
     branches: [main]
     paths: [hello-world/**]
   workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Who to greet ?
+        options:
+          - hedi
+          - mona lisa
 
 jobs:
   test-action:
